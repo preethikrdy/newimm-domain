@@ -15,6 +15,8 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
+        Immigrant testImm = new Immigrant();
+        boolean testImm.isValid(1);
         assertTrue( true );
     }
 }
