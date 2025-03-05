@@ -7,16 +7,12 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+public class AppTest {
     @Test
     public void shouldAnswerWithTrue()
     {
         Immigrant testImm = new Immigrant();
-        boolean testImm.isValid(1);
-        assertTrue( true );
-    }
+        boolean test = testImm.true1();
+        assertTrue(test);
+        
 }
