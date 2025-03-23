@@ -2,7 +2,6 @@ package edu.gmu.cs321;
 import java.time.LocalDate;
 
 public class ApplcationForm {
-    // Fields 
     String applicationID;
     String firstName;
     String lastName;
@@ -22,7 +21,7 @@ public class ApplcationForm {
         this.dateOfBirth = dob;
         this.ssn = ssn;
         this.address = address;
-        this.immigrationStatus = immigratiionStatus;
+        this.immigrationStatus = immigrationStatus;
         this.documents = documents;
         this.paymentAmount = paymentAmount;
     }
@@ -48,6 +47,13 @@ public class ApplcationForm {
         if(firstName == null || firstName.isEmpty()){return false;}
         return true;
     }
+
+    // Getting specific Instance
+    public ApplicationForm getAppFormById(String appFormID) {
+        // failed lookup
+        return null;
+    }
+
 
     // Getting from a specific instance
     public String getFirstName(){

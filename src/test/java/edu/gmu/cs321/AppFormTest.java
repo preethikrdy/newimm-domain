@@ -10,7 +10,7 @@ class AppFormTest {
     // Tests for creating object.
     @Test
     @SuppressWarnings("deprecation")
-    void CreateNewTest() { 
+    void CreateNewAppFormTest() { 
         // For valid object
         ApplcationForm sample = sample.createNewAppForm("158940981","Toad","Ette",null,"000-000-0000","immigrant",null,0.0001);
         assertEquals (sample.getFirstName(), "Toad");
@@ -19,7 +19,7 @@ class AppFormTest {
     }
 
     @Test
-    void CreateNewInvalidTest(){
+    void CreateNewInvalidAppFormTest(){
         // Invalid first name 
         ApplcationForm sample = sample.createNewApp("","","Ette",null,"000-000-0000","",null,0.0001);
         assertNull(sample);
@@ -42,11 +42,25 @@ class AppFormTest {
         assertFalse(result);
     }
 
+    // Tests getting specific instance 
+    @Test
+    public void GetAppFormValidTest() {
+        ApplcationForm sample = sample.createNewAppForm("58998","King","Boo",null,"800-800-0000","immigrant king",null,10000.0);
+        ApplicationForm result = document.getAppFormById("ValidID");
+        assertNotNull(result);
+        assertThat (sample, instanceOf (ApplcationForm.class));
+    }
 
+    @Test
+    public void GetAppFormInvalidTest() {
+        ApplcationForm sample = sample.createNewAppForm("58998","King",null,null,"800-800-0000","immigrant king",null,10000.0);
+        ApplicationForm result = document.getAppFormById("InvalidID");
+        assertNotNull(result);
+    }
     // Tests getting from object.
     @Test
     @SuppressWarnings("deprecation")
-    void GetterTest() { 
+    void GetterValidAppFormTest() { 
         // For valid object
         ApplcationForm sample = sample.createNewAppForm("44444444","Petey","Piranha",null,"444-444-4444","",null,10000.0);
         assertEquals (sample.getFirstName(), "Petey");
@@ -55,7 +69,7 @@ class AppFormTest {
     }
 
     @Test
-    void GetterInvalidTest(){
+    void GetterInvalidAppFormTest(){
         // Invalid first name 
         ApplcationForm sample = sample.createNewBO ("158940981",null,"Ette",null,"000-000-0000","immigrant",null,0.0001);
         assertEquals (sample.getFirstName(), null);
