@@ -1,11 +1,6 @@
 package edu.gmu.cs321;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class AuthServiceTest {
@@ -21,6 +16,7 @@ public class AuthServiceTest {
     @Test
     public void createInvalidAuthServiceTest(){
         AuthenticationService service = new AuthenticationService();
+        Address address = new Address("","","","");
         boolean result = address.updateAuthService(true);
         assertTrue(result, "AuthService should have a status of false when not implemented.");
     }
@@ -46,13 +42,13 @@ public class AuthServiceTest {
         AuthenticationService service = new AuthenticationService();
         AuthenticationService result = service.getAuthenticationServiceByID("ExistingID");
         assertNotNull(result);
-        assertThat(result, instanceOf(AuthenticationService.class))
+        assertThat(result, instanceOf(AuthenticationService.class));
     }
 
     @Test
     public void getInvalidAuthServiceTest(){
         AuthenticationService service = new AuthenticationService();
-        AuthenticationService result = service.getAuthenticationServiceByID("NON-EXISTENT_ID")
+        AuthenticationService result = service.getAuthenticationServiceByID("NON-EXISTENT_ID");
         assertNull(result);
     }
 }

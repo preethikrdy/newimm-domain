@@ -1,74 +1,43 @@
 package edu.gmu.cs321;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ApplcationForm {
-    String applicationID;
-    String firstName;
-    String lastName;
-    LocalDate dateOfBirth;
-    String ssn;
-    Address address;
-    String immigrationStatus;
-    List documents;
-    Double paymentAmount;
-    String flag = "UNKNOWN"; // Tracks where in workflow form is in
+public class ApplicationForm {
+    private String applicationID;
+    private Immigrant immigrant;  // Replaces name, dob, ssn, status, etc.
+    private List<Document> documents;
+    private Double paymentAmount;
 
-    // Constructor
-    private ApplcationForm(String applicationID, String firstName, String lastName, LocalDate dob, String ssn, Address address, String immigratiionStatus, List documents, Double paymentAmount){
+    public ApplicationForm(String applicationID, Immigrant immigrant, List<Document> documents, Double paymentAmount) {
         this.applicationID = applicationID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dob;
-        this.ssn = ssn;
-        this.address = address;
-        this.immigrationStatus = immigrationStatus;
-        this.documents = documents;
+        this.immigrant = immigrant;
+        this.documents = documents != null ? documents : new ArrayList<>();
         this.paymentAmount = paymentAmount;
     }
 
-    // Adding a new instance
-    public static ApplcationForm createNewAppForm(String applicationID, String firstName, String lastName, LocalDate dob, String ssn, Address address, String immigratiionStatus, List documents, Double paymentAmount){
-        // Check firstname
-        if(firstName == null || firstName.isEmpty()){return null;}
-        // Check lastname
-        if(lastName = null || lastName.isEmpty()){return null;}
-        // Check ssn
-        if(ssn = null || ssn.isEmpty()){return null;}
-        // Check for valid date -- error checking could be improved
-        //if(!dob.isValid()){return null;}
-        // Address checking depends on how the class is implemented
-        if(immigrationStatus = null || immigratiionStatus.isEmpty()){return null;}
-
-        return new ApplcationForm(applicationID, firstName, lastName, null, ssn, null, immigratiionStatus, null, paymentAmount);
+    public Immigrant getImmigrant() {
+        return immigrant;
     }
 
-    // Updating an instance
-    public boolean updateFirstName(String firstName){
-        if(firstName == null || firstName.isEmpty()){return false;}
-        return true;
+    public void addDocument(Document doc) {
+        this.documents.add(doc);
     }
 
-    // Getting specific Instance
-    public ApplicationForm getAppFormById(String appFormID) {
-        // failed lookup
-        return null;
+    public boolean isComplete() {
+        return immigrant != null &&
+               immigrant.getFullName() != null &&
+               immigrant.getSsn() != null &&
+               immigrant.getAddress() != null &&
+               paymentAmount != null;
     }
 
-
-    // Getting from a specific instance
-    public String getFirstName(){
-        return this.firstName;
+    @Override
+    public String toString() {
+        return "ApplicationForm{" +
+                "applicationID='" + applicationID + '\'' +
+                ", immigrant=" + immigrant +
+                ", documents=" + documents.size() +
+                ", paymentAmount=" + paymentAmount +
+                '}';
     }
-
-    // Class diagram methods -- to be implemented
-    public void addDocument(Document doc){
-        return null;
-    }
-
-    // Should be changed to work with flag.
-    public boolean isComplete(){
-
-    }
-
 }
-

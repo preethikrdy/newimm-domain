@@ -1,52 +1,51 @@
 package edu.gmu.cs321;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ApplicantTest {
 
-    @Test
-    public void testCreateApplicant_ValidInput_ShouldReturnId() {
-        Applicant applicant = new Applicant();
-        Address address = new Address("123 main St", "Fairfax", "22030");
-        String result = applicant.createApplicant("John Doe", address);
-        assertTrue(result.length() > 0); // Should fail for now
+    private Immigrant sampleImmigrant() {
+        Address address = new Address("123 Main St", "Fairfax", "VA", "22030");
+        return new Immigrant("123", "John Doe", "1990-01-01", "111-22-3333", "USA", "Pending", address);
     }
 
     @Test
-    public void testCreateApplicant_InvalidInput_ShouldReturnError() {
-        Applicant applicant = new Applicant();
-        String result = applicant.createApplicant("", null);
-        assertEquals("ERROR", result); // Expecting "ERROR" string
+    public void testCreateApplicant_ValidData_ShouldInstantiate() {
+        Immigrant immigrant = sampleImmigrant();
+        Applicant applicant = new Applicant("A001", "john@example.com", immigrant);
+
+        assertNotNull(applicant);
+        assertEquals("John Doe", applicant.getFullName());
+        assertEquals("Fairfax", applicant.getAddress().getCity());
+        assertEquals("john@example.com", applicant.getEmail());
     }
 
     @Test
-    public void testUpdateApplicant_ValidInput_ShouldReturnTrue() {
-        Applicant applicant = new Applicant();
-        boolean result = applicant.updateApplicant("A12345", "Jane Doe");
-        assertTrue(result);
+    public void testGetFullName_ShouldMatchImmigrantData() {
+        Applicant applicant = new Applicant("A002", "jane@example.com", sampleImmigrant());
+        assertEquals("John Doe", applicant.getFullName());
     }
 
     @Test
-    public void testUpdateApplicant_InvalidId_ShouldReturnFalse() {
-        Applicant applicant = new Applicant();
-        boolean result = applicant.updateApplicant("", "Jane Doe");
-        assertFalse(result);
+    public void testGetAddress_NotNullAndValidCity() {
+        Applicant applicant = new Applicant("A003", "tester@example.com", sampleImmigrant());
+        Address address = applicant.getAddress();
+        assertNotNull(address);
+        assertEquals("Fairfax", address.getCity());
     }
 
     @Test
-    public void testGetApplicant_ValidId_ShouldReturnObject() {
-        Applicant applicant = new Applicant();
-        applicant.createApplicant("John Doe", new Address("123 Main", "Fairfax", "22030"));
-        Applicant found = applicant.getApplicantById("A12345");
-        assertNotNull(found);
+    public void testGetSSN_ShouldMatchImmigrantData() {
+        Applicant applicant = new Applicant("A004", "idcheck@example.com", sampleImmigrant());
+        assertEquals("111-22-3333", applicant.getSsn());
     }
 
     @Test
-    public void testGetApplicant_InvalidId_ShouldReturnNull() {
-        Applicant applicant = new Applicant();
-        Applicant result = applicant.getApplicantById("InvalidId");
-        assertNull(result);
+    public void testToString_IncludesIdAndName() {
+        Applicant applicant = new Applicant("A005", "test@example.com", sampleImmigrant());
+        String text = applicant.toString();
+        assertTrue(text.contains("A005"));
+        assertTrue(text.contains("John Doe"));
     }
 }

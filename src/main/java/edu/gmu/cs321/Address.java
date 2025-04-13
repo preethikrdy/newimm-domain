@@ -4,15 +4,18 @@ public class Address {
     private String street;
     private String city;
     private String zipcode;
+    private String state;
 
-    public Address(String street, String city, String zipcode) {
+    public Address(String street, String city, String zipcode, String state) {
         this.street = street;
         this.city = city;
         this.zipcode = zipcode;
+        this.state = state;
+
     }
 
     public String createAddress() {
-        // Simulate failure return
+        //  failure return
         return "ERROR";
     }
 
@@ -37,5 +40,10 @@ public class Address {
 
     public String getZipcode() {
         return zipcode;
+    }
+
+    @Override
+    public String toString() {
+        return street + ", " + city + ", " + state + " " + zipcode;
     }
 }

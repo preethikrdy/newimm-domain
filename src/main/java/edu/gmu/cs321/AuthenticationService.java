@@ -13,7 +13,7 @@ public class AuthenticationService {
         return false; // ERror code
     }
 
-    public AuthenicationService getAuthenticationServiceByID(String id) {
+    public AuthenticationService getAuthenticationServiceByID(String id) {
         return null; // Error code
     }    
 }

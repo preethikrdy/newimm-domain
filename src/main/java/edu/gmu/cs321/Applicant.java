@@ -1,16 +1,46 @@
 package edu.gmu.cs321;
 
 public class Applicant {
+    private String applicantId;
+    private String email;
+    private Immigrant immigrantInfo;  //  shared object
 
-    public String createApplicant(String name, Address address) {
-        return ""; // Hardcoded to fail
+    public Applicant(String applicantId, String email, Immigrant immigrantInfo) {
+        this.applicantId = applicantId;
+        this.email = email;
+        this.immigrantInfo = immigrantInfo;
     }
 
-    public boolean updateApplicant(String applicantId, String newName) {
-        return false; // Hardcoded to fail
+    public String getApplicantId() {
+        return applicantId;
     }
 
-    public Applicant getApplicantById(String applicantId) {
-        return null; // Hardcoded to fail
+    public String getEmail() {
+        return email;
+    }
+
+    public Immigrant getImmigrantInfo() {
+        return immigrantInfo;
+    }
+
+    public String getSsn() {
+        return immigrantInfo.getSsn();
+    }
+
+    public Address getAddress() {
+        return immigrantInfo.getAddress();
+    }
+
+    public String getFullName() {
+        return immigrantInfo.getFullName();
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" +
+                "applicantId='" + applicantId + '\'' +
+                ", email='" + email + '\'' +
+                ", immigrantInfo=" + immigrantInfo +
+                '}';
     }
 }

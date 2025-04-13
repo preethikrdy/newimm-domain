@@ -1,78 +1,51 @@
-import static org.hamcrest.CoreMatchers.*;
+package edu.gmu.cs321;
+
 import static org.junit.Assert.*;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-/**
- * Unit tests for Application form.
- */
-class AppFormTest {
+import java.util.ArrayList;
+import java.util.List;
 
-    // Tests for creating object.
-    @Test
-    @SuppressWarnings("deprecation")
-    void CreateNewAppFormTest() { 
-        // For valid object
-        ApplcationForm sample = sample.createNewAppForm("158940981","Toad","Ette",null,"000-000-0000","immigrant",null,0.0001);
-        assertEquals (sample.getFirstName(), "Toad");
-        assertNotNull (sample);
-        assertThat (sample, instanceOf (ApplcationForm.class));
+public class AppFormTest {
+
+    private Immigrant sampleImmigrant() {
+        Address address = new Address("123 Main St", "Fairfax", "VA", "22030");
+        return new Immigrant("001", "Test User", "1990-01-01", "123-45-6789", "CountryX", "Pending", address);
     }
 
     @Test
-    void CreateNewInvalidAppFormTest(){
-        // Invalid first name 
-        ApplcationForm sample = sample.createNewApp("","","Ette",null,"000-000-0000","",null,0.0001);
-        assertNull(sample);
-    }
+    public void testCreateValidApplicationForm() {
+        Immigrant immigrant = sampleImmigrant();
+        List<Document> docs = new ArrayList<>();
+        docs.add(new Document("001", "doc1.pdf", "PDF", "applicant001", "Uploaded"));
+        ApplicationForm form = new ApplicationForm("app001", immigrant, docs, 100.0);
 
-    // Tests for updating object.
-    @Test
-    void UpdateFormTest() { 
-        // For valid object
-        ApplcationForm sample = sample.createNewAppForm("58998","King","Boo",null,"800-800-0000","immigrant king",null,10000.0);
-        sample.updateFirstName("Queen");
-        assertEquals ("Queen", sample.getFirstName());
+        assertNotNull(form);
+        assertEquals("Test User", form.getImmigrant().getFullName());
+        assertTrue(form.isComplete());
     }
 
     @Test
-    void UpdateFormInvalidTest(){
-        // Invalid first name 
-        ApplcationForm sample = sample.createNewAppForm("58998","King","Boo",null,"800-800-0000","immigrant king",null,10000.0);
-        boolean result = updateFirstName("");
-        assertFalse(result);
-    }
-
-    // Tests getting specific instance 
-    @Test
-    public void GetAppFormValidTest() {
-        ApplcationForm sample = sample.createNewAppForm("58998","King","Boo",null,"800-800-0000","immigrant king",null,10000.0);
-        ApplicationForm result = document.getAppFormById("ValidID");
-        assertNotNull(result);
-        assertThat (sample, instanceOf (ApplcationForm.class));
+    public void testCreateInvalidApplicationForm() {
+        ApplicationForm form = new ApplicationForm("app002", null, null, null);
+        assertFalse(form.isComplete());
     }
 
     @Test
-    public void GetAppFormInvalidTest() {
-        ApplcationForm sample = sample.createNewAppForm("58998","King",null,null,"800-800-0000","immigrant king",null,10000.0);
-        ApplicationForm result = document.getAppFormById("InvalidID");
-        assertNotNull(result);
-    }
-    // Tests getting from object.
-    @Test
-    @SuppressWarnings("deprecation")
-    void GetterValidAppFormTest() { 
-        // For valid object
-        ApplcationForm sample = sample.createNewAppForm("44444444","Petey","Piranha",null,"444-444-4444","",null,10000.0);
-        assertEquals (sample.getFirstName(), "Petey");
-        assertNotNull (sample);
-        assertThat (sample, instanceOf (ApplcationForm.class));
+    public void testAddDocument() {
+        Immigrant immigrant = sampleImmigrant();
+        ApplicationForm form = new ApplicationForm("app003", immigrant, null, 50.0);
+        form.addDocument(new Document("002", "doc2.pdf", "PDF", "applicant002", "Uploaded"));
+
+        assertTrue(form.toString().contains("documents=1"));
     }
 
     @Test
-    void GetterInvalidAppFormTest(){
-        // Invalid first name 
-        ApplcationForm sample = sample.createNewBO ("158940981",null,"Ette",null,"000-000-0000","immigrant",null,0.0001);
-        assertEquals (sample.getFirstName(), null);
-        assertNull (sample);
+    public void testImmigrantDataAccess() {
+        Immigrant immigrant = sampleImmigrant();
+        ApplicationForm form = new ApplicationForm("app004", immigrant, null, 120.0);
+
+        assertEquals("Fairfax", form.getImmigrant().getAddress().getCity());
+        assertEquals("Pending", form.getImmigrant().getImmigrationStatus());
     }
 }
