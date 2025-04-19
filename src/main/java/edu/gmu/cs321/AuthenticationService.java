@@ -1,19 +1,23 @@
 package edu.gmu.cs321;
 
-
 public class AuthenticationService {
-    boolean AuthenticationStatus = false;
-    String id;
-      
-    public boolean createAuthService() {
-        return false; // Error code
+    private boolean authenticated;
+
+    public AuthenticationService() {
+        this.authenticated = false;
     }
 
-    public boolean updateAuthService(boolean authenticationStatus) {
-        return false; // ERror code
+    // Authenticate method expects a username and password
+    public boolean authenticate(String username, String password) {
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+            this.authenticated = true;
+            return true;
+        }
+        this.authenticated = false;
+        return false;
     }
 
-    public AuthenticationService getAuthenticationServiceByID(String id) {
-        return null; // Error code
-    }    
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
 }

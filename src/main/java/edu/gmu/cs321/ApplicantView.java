@@ -1,22 +1,27 @@
 package edu.gmu.cs321;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class ApplicantView extends Application {
+
     @Override
-    public void start(Stage stage) {
-        Label label = new Label("Applicant View");
+    public void start(Stage stage) throws Exception {
+        // Load the FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GreenCardUpdate.fxml"));
+        StackPane root = loader.load();
 
-        VBox layout = new VBox(10);
-        layout.getChildren().add(label);
-
-        Scene scene = new Scene(layout, 400, 300);
+        // Create the scene
+        Scene scene = new Scene(root, 600, 400);
         stage.setScene(scene);
-        stage.setTitle("Applicant Screen");
+        stage.setTitle("Applicant Screen - Green Card Update");
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
