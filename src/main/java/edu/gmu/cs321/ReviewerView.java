@@ -1,23 +1,27 @@
 package edu.gmu.cs321;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+public class ReviewerView extends Application {
 
-public class ReviewerView extends Application{
     @Override
-        public void start(Stage stage) {
-            Label label = new Label("Reviewer View");
+    public void start(Stage stage) throws Exception {
+        // Load the FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reviewUI.fxml"));
+        BorderPane root = loader.load();
 
-            VBox layout = new VBox(10);
-            layout.getChildren().add(label);
+        // Create the scene
+        Scene scene = new Scene(root, 600, 400);
+        stage.setScene(scene);
+        stage.setTitle("Review Application");
+        stage.show();
+    }
 
-            Scene scene = new Scene(layout, 400, 300);
-            stage.setScene(scene);
-            stage.setTitle("Reviewer Screen");
-            stage.show();
-        }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
