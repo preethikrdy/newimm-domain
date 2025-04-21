@@ -35,7 +35,7 @@ public class ReviewController {
     private TextField lastNameField;
 
     @FXML
-    private TextField addressField;
+    private TextArea addressArea;
 
     @FXML
     private TextField dobField;

@@ -16,9 +16,30 @@ public class JavaFX extends Application {
         Button approverBtn = new Button("Approver View");
 
         //Setting the action for what each button should do
-        applicantBtn.setOnAction(e -> new ApplicantView().start(new Stage()));
-        reviewerBtn.setOnAction(e -> new ReviewerView().start(new Stage()));
-        approverBtn.setOnAction(e -> new ApproverView().start(new Stage()));
+        applicantBtn.setOnAction(e -> {
+            try {    
+                new ApplicantView().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+
+        reviewerBtn.setOnAction(e -> {
+            try {
+                new ReviewerView().start(new Stage());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
+
+        approverBtn.setOnAction(e -> {
+            try {
+                new ApproverView().start(new Stage());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        });
 
         //Screen layout, and where the buttons should go
         VBox screen = new VBox(10, applicantBtn, reviewerBtn, approverBtn);
