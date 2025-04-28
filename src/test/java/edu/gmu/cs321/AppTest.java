@@ -1,6 +1,6 @@
 package edu.gmu.cs321;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
@@ -9,11 +9,11 @@ import org.junit.Test;
  */
 public class AppTest {
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        Immigrant testImm = new Immigrant("","","","","","", new Address("","","",""));
-        //boolean test = testImm.true1();
-       //assertTrue(test);
-        
-}
+    public void shouldAnswerWithTrue() {
+        Immigrant testImm = new Immigrant(
+            "", "", "", "", "",
+            new Address("", "", "", "")
+        );
+        assertNotNull(testImm);
+    }
 }
