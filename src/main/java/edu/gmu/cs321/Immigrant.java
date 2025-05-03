@@ -1,71 +1,38 @@
 package edu.gmu.cs321;
 
 public class Immigrant {
-    private String id;
+    private String immigrantId;
     private String fullName;
-    private String dob;
+    private String dateOfBirth;
     private String ssn;
     private String countryOfOrigin;
     private String immigrationStatus;
     private Address address;
 
-    public Immigrant(String id, String fullName, String dob, String ssn, String country, String status, Address address) {
-        this.id = id;
+    public Immigrant(String immigrantId, String fullName, String dateOfBirth, String ssn, String countryOfOrigin, String immigrationStatus, Address address) {
+        this.immigrantId = immigrantId;
         this.fullName = fullName;
-        this.dob = dob;
+        this.dateOfBirth = dateOfBirth;
         this.ssn = ssn;
-        this.countryOfOrigin = country;
-        this.immigrationStatus = status;
+        this.countryOfOrigin = countryOfOrigin;
+        this.immigrationStatus = immigrationStatus;
         this.address = address;
     }
-      // hardcoded to fail
-      public static Immigrant getImmigrantBySSN(String ssn) {
-        return null; // will connect to MySQL later
-    }
 
-    // Simulated update method
-    public boolean updateStatus(String newStatus) {
-        return false; // hardcoded to fail
-    }
+    public String getImmigrantId() { return immigrantId; }
+    public String getFullName() { return fullName; }
+    public String getDateOfBirth() { return dateOfBirth; }
+    public String getSsn() { return ssn; }
+    public String getCountryOfOrigin() { return countryOfOrigin; }
+    public String getImmigrationStatus() { return immigrationStatus; }
+    public Address getAddress() { return address; }
 
-    // change this later
-    public boolean isValid() {
-        return this.ssn != null && !this.ssn.isEmpty();
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getDateOfBirth() {
-        return dob;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public String getCountryOfOrigin() {
-        return countryOfOrigin;
-    }
-
-    public String getImmigrationStatus() {
-        return immigrationStatus;
-    }
-
-    public Address getAddress() {
-        return address;
+    public void updateStatus(String newStatus) {
+        this.immigrationStatus = newStatus;
     }
 
     @Override
     public String toString() {
-        return "Immigrant{" +
-                "Id=" + id + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", dob='" + dob + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", country='" + countryOfOrigin + '\'' +
-                ", status='" + immigrationStatus + '\'' +
-                '}';
+        return "Immigrant [ID: " + immigrantId + ", Name: " + fullName + ", Status: " + immigrationStatus + "]";
     }
 }

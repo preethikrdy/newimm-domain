@@ -47,6 +47,11 @@ public class Document {
         return uploadStatus;
     }
 
+    // Add getName() to satisfy ReviewController
+    public String getName() {
+        return fileName;
+    }
+
     // Optional setter 
     public void setUploadStatus(String uploadStatus) {
         this.uploadStatus = uploadStatus;
