@@ -57,6 +57,10 @@ public class Immigrant {
         return address;
     }
 
+    public String getID(){
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Immigrant{" +

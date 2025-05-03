@@ -16,6 +16,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="userLabel"/>
+            <Label fx:id="statusLabel"/>
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -27,7 +28,7 @@
          <children>
             <Button fx:id="saveButton" mnemonicParsing="false" text="Save" onAction="#saveApplication"/>
             <Button fx:id="editButton" mnemonicParsing="false" text="Edit" onAction="#edit"/>
-            <Button fx:id="markButton" mnemonicParsing="false" text="Mark for Approval" onAction="#markForApproval"/>
+            <Button fx:id="markButton" mnemonicParsing="false" text="Mark/Send to Approval" onAction="#markForApproval"/>
             <Button fx:id="increaseButton" mnemonicParsing="false" text="Increase Font Size" onAction="#increaseFontSize"/>
             <Button fx:id="decreaseButton" mnemonicParsing="False" text="Decrease Font Size" onAction="#decreaseFontSize"/>
          </children>

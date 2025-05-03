@@ -1,20 +1,20 @@
 package edu.gmu.cs321;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.*;;
+import javafx.scene.control.*;
 
 
 public class ReviewController {
     @FXML
     private Label userLabel;
+
+    @FXML
+    private Label statusLabel;
 
     @FXML
     private Button saveButton;
@@ -62,17 +62,35 @@ public class ReviewController {
     private TextField statusField;
 
     private double fontSize = 0;
+    private boolean editMode = false;
+    private ApplicationForm currApplication;
 
     @FXML
+    // Dummy hard coded data
     public void initialize() {
-        toggleEdit(false);
-        ssnField.setText("444-92--7820");
-        nameField.setText("Yoshi Tezuka");
-        originField.setText("Japan");
-        addressField.setText("1385 Mushroom Drive, Toad's Palace, CA 58147");
-        dobField.setText("1990-12-04");
+        toggleEdit(editMode);
+
+        currApplication = MockApplication.createSampleApp();
+        populateFields(currApplication);
+
         userLabel.setText("UserID: bwser logged in");
-        statusField.setText("In Review");
+        statusLabel.setText("VIEW MODE");
+    }
+
+    private void populateFields(ApplicationForm app){
+        if(app == null || app.getImmigrant() == null) return;
+
+        Immigrant imm = app.getImmigrant();
+        Address addr = imm.getAddress();
+
+        ssnField.setText(imm.getSsn());
+        nameField.setText(imm.getFullName());
+        dobField.setText(imm.getDateOfBirth());
+        originField.setText(imm.getCountryOfOrigin());
+        statusField.setText(imm.getImmigrationStatus());
+        
+        addressField.setText(addr.getStreet() + ", " + addr.getCity()
+            + ", " + addr.getState() + " " + addr.getZip());
     }
 
     @FXML
@@ -80,19 +98,28 @@ public class ReviewController {
         // Placeholder... show some visual on the screen to show it saved.
         System.out.println("Application saved.");
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("Application saved successfully!");
+        alert.showAndWait();
+
         // Save into database... (something like UPDATE with SSN being the PK)
-        toggleEdit(false); // Disable edit mode after hitting save
+        editMode = false;
+        toggleEdit(editMode); // Disable edit mode after hitting save
     }
 
     @FXML
     private void edit(){
-        toggleEdit(true);
+        editMode = !editMode;
+        toggleEdit(editMode);
     }
 
     @FXML
     private void markForApproval(){
         statusField.setText("Waiting for approval...");
-        toggleEdit(false);
+        editMode = false;
+        toggleEdit(editMode);
     }
 
     @FXML 
@@ -113,6 +140,17 @@ public class ReviewController {
         addressField.setEditable(edit);
         dobField.setEditable(edit);
         statusField.setEditable(edit);
+
+        String bgColor = edit ? "-fx-background-color:rgb(239, 245, 211)" : "-fx-background-color:rgb(240,240,240)";
+        ssnField.setStyle(bgColor);
+        nameField.setStyle(bgColor);
+        originField.setStyle(bgColor);
+        addressField.setStyle(bgColor);
+        dobField.setStyle(bgColor);
+        statusField.setStyle(bgColor);
+
+        editButton.setText(edit ? "Quit" : "Edit");
+        statusLabel.setText(edit ? "EDIT MODE": "VIEW MODE");
     }
 
     @FXML
