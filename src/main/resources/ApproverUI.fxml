@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="edu.gmu.cs321.ApproverViewController"
+      spacing="10">
+    
+    <children>
+        <Label fx:id="titleLabel" text="Approver View" />
+        
+        <ComboBox fx:id="sortBox" prefWidth="150" />
+        
+        <TableView fx:id="appTable" prefHeight="350">
+            <columns>
+                <TableColumn fx:id="nameCol" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="statusCol" text="Status" prefWidth="200"/>
+            </columns>
+        </TableView>
+        
+        <Button fx:id="viewBtn" text="View Details" />
+    </children>
+    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</VBox>

@@ -23,6 +23,10 @@ public class ApplicationForm {
         this.documents.add(doc);
     }
 
+    public String getFormId(){
+        return this.applicationID;
+    }
+
     public boolean isComplete() {
         return immigrant != null &&
                immigrant.getFullName() != null &&
