@@ -31,6 +31,10 @@ public class Immigrant {
         this.immigrationStatus = newStatus;
     }
 
+    public String getID(){
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Immigrant [ID: " + immigrantId + ", Name: " + fullName + ", Status: " + immigrationStatus + "]";

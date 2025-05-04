@@ -14,6 +14,22 @@ public class JavaFX extends Application {
         Button reviewerBtn = new Button("Reviewer View");
         Button approverBtn = new Button("Approver View");
 
+        //Setting the action for what each button should do
+        applicantBtn.setOnAction(e -> {
+            try {    
+                new ApplicantView().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+
+        reviewerBtn.setOnAction(e -> {
+            try {
+                new ReviewerView().start(new Stage());
+            } catch (Exception ex){
+                ex.printStackTrace();
+
         applicantBtn.setOnAction(e -> {
             try {
                 new ApplicantView().start(new Stage());
@@ -29,12 +45,15 @@ public class JavaFX extends Application {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.err.println("Failed to launch ReviewerView: " + ex.getMessage());
+
             }
         });
 
         approverBtn.setOnAction(e -> {
             try {
                 new ApproverView().start(new Stage());
+            } catch (Exception ex){
+                ex.printStackTrace();
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.err.println("Failed to launch ApproverView: " + ex.getMessage());
