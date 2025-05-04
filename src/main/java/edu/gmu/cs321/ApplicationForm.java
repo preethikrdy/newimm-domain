@@ -1,43 +1,32 @@
 package edu.gmu.cs321;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicationForm {
-    private String applicationID;
-    private Immigrant immigrant;  // Replaces name, dob, ssn, status, etc.
+    private String applicationId;
+    private Immigrant immigrant;
     private List<Document> documents;
-    private Double paymentAmount;
+    private Double processingFee;
+    private boolean isComplete;
 
-    public ApplicationForm(String applicationID, Immigrant immigrant, List<Document> documents, Double paymentAmount) {
-        this.applicationID = applicationID;
+    public ApplicationForm(String applicationId, Immigrant immigrant, List<Document> documents, Double processingFee) {
+        this.applicationId = applicationId;
         this.immigrant = immigrant;
-        this.documents = documents != null ? documents : new ArrayList<>();
-        this.paymentAmount = paymentAmount;
+        this.documents = documents != null ? new ArrayList<>(documents) : new ArrayList<>();
+        this.processingFee = processingFee;
+        this.isComplete = false;
     }
 
-    public Immigrant getImmigrant() {
-        return immigrant;
-    }
+    public String getApplicationId() { return applicationId; }
+    public Immigrant getImmigrant() { return immigrant; }
+    public List<Document> getDocuments() { return new ArrayList<>(documents); }
+    public Double getProcessingFee() { return processingFee; }
+    public boolean isComplete() { return isComplete; }
 
-    public void addDocument(Document doc) {
-        this.documents.add(doc);
-    }
+    public void setComplete(boolean complete) { this.isComplete = complete; }
 
-    public boolean isComplete() {
-        return immigrant != null &&
-               immigrant.getFullName() != null &&
-               immigrant.getSsn() != null &&
-               immigrant.getAddress() != null &&
-               paymentAmount != null;
-    }
-
-    @Override
-    public String toString() {
-        return "ApplicationForm{" +
-                "applicationID='" + applicationID + '\'' +
-                ", immigrant=" + immigrant +
-                ", documents=" + documents.size() +
-                ", paymentAmount=" + paymentAmount +
-                '}';
+    public void addDocument(Document document) {
+        documents.add(document);
     }
 }

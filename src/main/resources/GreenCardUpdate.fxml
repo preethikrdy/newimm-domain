@@ -13,7 +13,7 @@
             <ComboBox fx:id="languageComboBox" prefWidth="100"/>
         </HBox>
 
-        <Label fx:id="loggedInLabel" text="Logged in: Luigi"/>
+        <Label fx:id="loggedInLabel" text="Logged in: Data Entry User"/>
 
         <GridPane hgap="10" vgap="10">
             <Label text="PERSONAL INFORMATION:" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
@@ -44,6 +44,14 @@
             <TextField fx:id="stateField" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
         </GridPane>
 
+        <!-- Validation Error Message Label -->
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: red; -fx-font-size: 12px;" alignment="CENTER" visible="false"/>
+
+        <!-- Add Upload Button and Labels -->
+        <Button fx:id="uploadButton" text="Upload Document" onAction="#uploadDocument" alignment="CENTER"/>
+        <Label fx:id="fileNameLabel" text="" style="-fx-font-size: 12px;" alignment="CENTER" visible="false"/>
+        <Label fx:id="uploadStatusLabel" text="" style="-fx-font-size: 12px; -fx-text-fill: green;" alignment="CENTER" visible="false"/>
+
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="saveDraftButton" text="Save Draft" onAction="#saveDraft"/>
             <Button fx:id="submitButton" text="Submit" onAction="#submit"/>
@@ -51,9 +59,28 @@
         </HBox>
     </VBox>
 
-    <!-- Confirmation View -->
+    <!-- Submit Confirmation View -->
     <VBox fx:id="confirmationView" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: black;" visible="false">
         <Label text="You have officially submitted your update." style="-fx-font-size: 14px;"/>
         <Label text="Thank you! (You may now close this)" style="-fx-font-size: 14px;"/>
+    </VBox>
+
+    <!-- Save Draft Confirmation View -->
+    <VBox fx:id="saveDraftView" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: black;" visible="false">
+        <Label text="Draft Saved Successfully!" style="-fx-font-size: 14px;"/>
+        <Label text="You can continue editing or submit later." style="-fx-font-size: 14px;"/>
+        <Button fx:id="returnToFormButton" text="Return to Form" onAction="#returnToForm"/>
+    </VBox>
+
+    <!-- Help View -->
+    <VBox fx:id="helpView" spacing="10" style="-fx-background-color: #F0F8FF; -fx-padding: 20;" visible="false">
+        <Label text="Help - How to Fill Out the Form" style="-fx-font-size: 16px; -fx-font-weight: bold;" alignment="CENTER"/>
+        <Label text="Q: How should I enter my name?" style="-fx-font-size: 14px;"/>
+        <Label text="A: Enter your legal first and last name as they appear on your passport or ID." style="-fx-font-size: 14px;"/>
+        <Label text="Q: What format should the birthdate be in?" style="-fx-font-size: 14px;"/>
+        <Label text="A: Use MM/DD/YYYY (e.g., 01/15/1990)." style="-fx-font-size: 14px;"/>
+        <Label text="Q: What if I don’t have an SS Number?" style="-fx-font-size: 14px;"/>
+        <Label text="A: Leave the field blank if you don’t have one." style="-fx-font-size: 14px;"/>
+        <Button fx:id="closeHelpButton" text="Close Help" onAction="#closeHelp"/>
     </VBox>
 </StackPane>

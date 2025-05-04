@@ -45,6 +45,4 @@ public class AddressTest {
         Address retrievedAddress = Address.getAddress("invalid-id");
         assertNull("Address should be null for invalid ID", retrievedAddress);
     }
-
-    // Other tests...
 }

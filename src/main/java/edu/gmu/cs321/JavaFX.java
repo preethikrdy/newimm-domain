@@ -1,16 +1,15 @@
 package edu.gmu.cs321;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 
-
 public class JavaFX extends Application {
 
     @Override
     public void start(Stage stage) {
-        //Creating buttons for each screen
         Button applicantBtn = new Button("Applicant View");
         Button reviewerBtn = new Button("Reviewer View");
         Button approverBtn = new Button("Approver View");
@@ -30,6 +29,23 @@ public class JavaFX extends Application {
                 new ReviewerView().start(new Stage());
             } catch (Exception ex){
                 ex.printStackTrace();
+
+        applicantBtn.setOnAction(e -> {
+            try {
+                new ApplicantView().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.err.println("Failed to launch ApplicantView: " + ex.getMessage());
+            }
+        });
+
+        reviewerBtn.setOnAction(e -> {
+            try {
+                new ReviewerView().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.err.println("Failed to launch ReviewerView: " + ex.getMessage());
+
             }
         });
 
@@ -38,10 +54,12 @@ public class JavaFX extends Application {
                 new ApproverView().start(new Stage());
             } catch (Exception ex){
                 ex.printStackTrace();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.err.println("Failed to launch ApproverView: " + ex.getMessage());
             }
         });
 
-        //Screen layout, and where the buttons should go
         VBox screen = new VBox(10, applicantBtn, reviewerBtn, approverBtn);
         Scene scene = new Scene(screen, 400, 400);
 

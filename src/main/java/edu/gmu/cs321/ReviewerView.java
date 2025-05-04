@@ -12,6 +12,7 @@ public class ReviewerView extends Application {
     public void start(Stage stage) throws Exception {
         // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/reviewUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReviewUI.fxml"));
         BorderPane root = loader.load();
 
         // Create the scene

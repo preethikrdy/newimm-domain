@@ -17,6 +17,7 @@
          <children>
             <Label fx:id="userLabel"/>
             <Label fx:id="statusLabel"/>
+            <Label fx:id="userLabel" text="UserID: xxxxxx logged in" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -31,6 +32,10 @@
             <Button fx:id="markButton" mnemonicParsing="false" text="Mark/Send to Approval" onAction="#markForApproval"/>
             <Button fx:id="increaseButton" mnemonicParsing="false" text="Increase Font Size" onAction="#increaseFontSize"/>
             <Button fx:id="decreaseButton" mnemonicParsing="False" text="Decrease Font Size" onAction="#decreaseFontSize"/>
+
+            <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
+            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" />
+            <Button fx:id="markButton" mnemonicParsing="false" text="Mark for Approval" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" top="5.0" />
@@ -46,6 +51,8 @@
                </font>
             </Label>
             <TextArea fx:id="commentsBox" prefHeight="300.0" prefWidth="200.0" VBox.vgrow="ALWAYS" wrapText="true" />
+
+            <TextArea fx:id="commentsBox" prefHeight="300.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -85,12 +92,38 @@
                          <children>
                              <Label text="SSN:" minWidth="100.0"/>
                              <TextField fx:id="ssnField" HBox.hgrow="ALWAYS"/>
+=======
+                         <children>
+                             <Label text="SSN:" minWidth="100.0"/>
+                             <TextField fx:id="ssnField" HBox.hgrow="ALWAYS"/>
+                         </children>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" spacing="10.0">
+                         <children>
+                             <Label text="First Name:" minWidth="100.0"/>
+                             <TextField fx:id="firstNameField" HBox.hgrow="ALWAYS"/>
+                         </children>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" spacing="10.0">
+                         <children>
+                             <Label text="Last Name:" minWidth="100.0"/>
+                             <TextField fx:id="lastNameField" HBox.hgrow="ALWAYS"/>
+                         </children>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" spacing="10.0">
+                         <children>
+                             <Label text="Address:" minWidth="100.0"/>
+                             <TextArea fx:id="addressField" prefHeight="60.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+
                          </children>
                      </HBox>
                      <HBox alignment="CENTER_LEFT" spacing="10.0">
                          <children>
                              <Label text="Address:" minWidth="100.0"/>
                              <TextField fx:id="addressField" HBox.hgrow="ALWAYS"/>
+
+                             <Label text="DOB:" minWidth="100.0"/>
+                             <TextField fx:id="dobField" HBox.hgrow="ALWAYS"/>
                          </children>
                      </HBox>
                       <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -107,6 +140,8 @@
             <Button fx:id="verifyButton" layoutX="298.0" layoutY="318.0" 
                mnemonicParsing="false" text="Verify Information" 
                AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+
+            <Button fx:id="verifyButton" layoutX="298.0" layoutY="318.0" mnemonicParsing="false" text="Verify Information" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
          </children>
       </AnchorPane>
    </center>

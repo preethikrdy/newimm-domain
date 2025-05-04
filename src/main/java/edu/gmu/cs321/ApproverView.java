@@ -54,6 +54,7 @@ public class ApproverView extends Application {
         layout.setPadding(new Insets(10));
         layout.getChildren().addAll(titleLabel, sortBox, appTable, viewBtn);
 
+
         //WorkflowService service = new WorkflowService();
 
         // Load manually inserted mock data for now
@@ -72,6 +73,31 @@ public class ApproverView extends Application {
             data.add(new FormRow(form));
         }
 
+        // Load data from ApplicationDataStore
+        ApplicationDataStore dataStore = ApplicationDataStore.getInstance();
+        List<ApplicationForm> forms = dataStore.getApplications();
+        for (ApplicationForm form : forms) {
+            data.add(new FormRow(form));
+        }
+
+        if (forms.isEmpty()) {
+            List<ApplicationForm> mockForms = List.of(
+                new ApplicationForm("APP-001",
+                    new Immigrant("1", "Alice Smith", "1985-03-01", "123-45-6789", "Canada", "Pending",
+                        new Address("100 Main St", "Fairfax", "VA", "22030")),
+                    List.of(new Document("DOC-001", "AlicePassport.pdf", "PDF", "1", "Uploaded")),
+                    100.0),
+                new ApplicationForm("APP-002",
+                    new Immigrant("2", "Bob Johnson", "1990-07-15", "987-65-4321", "India", "Pending",
+                        new Address("200 Elm St", "Arlington", "VA", "22201")),
+                    List.of(new Document("DOC-002", "BobVisa.pdf", "PDF", "2", "Uploaded")),
+                    150.0)
+            );
+            for (ApplicationForm form : mockForms) {
+                dataStore.addApplication(form);
+                data.add(new FormRow(form));
+            }
+        }
         sortBox.setOnAction(e -> {
             Comparator<FormRow> comp = Comparator.comparing(FormRow::getApplicantName);
             if ("Sort Z–A".equals(sortBox.getValue())) comp = comp.reversed();
@@ -136,4 +162,5 @@ public class ApproverView extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+}
 }

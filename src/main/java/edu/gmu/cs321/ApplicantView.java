@@ -10,11 +10,8 @@ public class ApplicantView extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GreenCardUpdate.fxml"));
         StackPane root = loader.load();
-
-        // Create the scene
         Scene scene = new Scene(root, 600, 400);
         stage.setScene(scene);
         stage.setTitle("Applicant Screen - Green Card Update");
@@ -24,4 +21,4 @@ public class ApplicantView extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-}
+}   
