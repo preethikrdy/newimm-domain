@@ -30,6 +30,9 @@ public class ReviewController {
         verifyButton.setOnAction(e -> {
             if (currentImmigrantId > 0) {
                 try {
+                    String comment = commentsBox.getText();
+                    FormDAO.saveReviewerComment(currentImmigrantId, comment);
+
                     Workflow workflow = new Workflow();
                     int result = workflow.AddWFItem(currentImmigrantId, "Approve");
                     workflow.closeConnection();

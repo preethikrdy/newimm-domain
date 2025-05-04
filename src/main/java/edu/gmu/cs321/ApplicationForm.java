@@ -7,6 +7,7 @@ public class ApplicationForm {
     private Immigrant immigrant;  // Replaces name, dob, ssn, status, etc.
     private List<Document> documents;
     private Double paymentAmount;
+    private String comments;
 
     public ApplicationForm(String applicationID, Immigrant immigrant, List<Document> documents, Double paymentAmount) {
         this.applicationID = applicationID;
@@ -25,6 +26,14 @@ public class ApplicationForm {
 
     public String getFormId(){
         return this.applicationID;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public boolean isComplete() {

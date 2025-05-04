@@ -44,6 +44,22 @@ public class FormDAO {
 
         return -1; // return -1 if something went wrong
     }
+
+    public static void saveReviewerComment(int immigrantId, String comment) {
+        String query = "UPDATE immigrants SET reviewer_comments = ? WHERE id = ?";
+    
+        try (Connection conn = DBHelper.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+    
+            stmt.setString(1, comment);
+            stmt.setInt(2, immigrantId);
+            stmt.executeUpdate();
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Immigrant getImmigrantById(int id) {
         String query = "SELECT * FROM immigrants WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
