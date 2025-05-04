@@ -2,30 +2,68 @@ package edu.gmu.cs321;
 
 public class Document {
 
-    private String filePath;
-    private String fileType;
+    private String documentId;
+    private String fileName;
+    private String associatedApplicantId;  // key reference
+    private String uploadStatus;
 
-    public String createDocument(String filePath, String fileType) {
-        // failure return
-        return "ERROR";
+    // Constructor
+    public Document(String documentId, String fileName, String fileType, String associatedApplicantId, String uploadStatus) {
+        this.documentId = documentId;
+        this.fileName = fileName;
+        this.associatedApplicantId = associatedApplicantId;
+        this.uploadStatus = uploadStatus;
     }
 
-    public boolean updateDocument(String docId, String newFilePath) {
-        // failure return
-        return false;
+    // returns null for now
+    public static Document createDocument(String fileName, String fileType, String applicantId) {
+        return null; // hardcoded to fail
     }
 
-    public Document getDocumentById(String docId) {
-        // failed lookup
-        return null;
+    // returns false
+    public boolean updateFileName(String newFileName) {
+        return false; // hardcoded to fail
     }
 
-    // Getters and setters (if needed later)
-    public String getFilePath() {
-        return filePath;
+    // lookup method
+    public static Document getDocumentById(String docId) {
+        return null; // hardcoded to fail
     }
 
-    public String getFileType() {
-        return fileType;
+    // Getters
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public String getAssociatedApplicantId() {
+        return associatedApplicantId;
+    }
+
+    public String getUploadStatus() {
+        return uploadStatus;
+    }
+
+    // Add getName() to satisfy ReviewController
+    public String getName() {
+        return fileName;
+    }
+
+    // Optional setter 
+    public void setUploadStatus(String uploadStatus) {
+        this.uploadStatus = uploadStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "documentId='" + documentId + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", applicantId='" + associatedApplicantId + '\'' +
+                ", uploadStatus='" + uploadStatus + '\'' +
+                '}';
     }
 }
