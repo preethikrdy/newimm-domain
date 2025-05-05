@@ -7,8 +7,9 @@ public class ApplicantTest {
 
     private Immigrant sampleImmigrant() {
         Address address = new Address("123 Main St", "Fairfax", "VA", "22030");
-        return new Immigrant("123", "John Doe", "1990-01-01", "111-22-3333", "USA", "Pending", address);
+        return new Immigrant("John Doe", "1990-01-01", "111-22-3333", "USA", "Pending", address);
     }
+    
 
     @Test
     public void testCreateApplicant_ValidData_ShouldInstantiate() {

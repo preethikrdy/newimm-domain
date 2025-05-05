@@ -1,41 +1,33 @@
 package edu.gmu.cs321;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class JavaFX extends Application {
 
     @Override
     public void start(Stage stage) {
+        // Creating buttons for each screen
         Button applicantBtn = new Button("Applicant View");
         Button reviewerBtn = new Button("Reviewer View");
         Button approverBtn = new Button("Approver View");
 
-        //Setting the action for what each button should do
-        applicantBtn.setOnAction(e -> {
-            try {    
-                new ApplicantView().start(new Stage());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-
-
-        reviewerBtn.setOnAction(e -> {
-            try {
-                new ReviewerView().start(new Stage());
-            } catch (Exception ex){
-                ex.printStackTrace();
-
+        // Setting the action for what each button should do
         applicantBtn.setOnAction(e -> {
             try {
-                new ApplicantView().start(new Stage());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GreenCardUpdate.fxml"));
+                Parent root = loader.load();
+                Stage appStage = new Stage();
+                appStage.setTitle("Data Entry");
+                appStage.setScene(new Scene(root));
+                appStage.show();
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.err.println("Failed to launch ApplicantView: " + ex.getMessage());
             }
         });
 
@@ -44,22 +36,23 @@ public class JavaFX extends Application {
                 new ReviewerView().start(new Stage());
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.err.println("Failed to launch ReviewerView: " + ex.getMessage());
-
             }
         });
 
         approverBtn.setOnAction(e -> {
             try {
-                new ApproverView().start(new Stage());
-            } catch (Exception ex){
-                ex.printStackTrace();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ApproverUI.fxml"));
+                Parent root = loader.load();
+                Stage appStage = new Stage();
+                appStage.setTitle("Approver Dashboard");
+                appStage.setScene(new Scene(root));
+                appStage.show();
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.err.println("Failed to launch ApproverView: " + ex.getMessage());
             }
         });
 
+        // Screen layout, and where the buttons should go
         VBox screen = new VBox(10, applicantBtn, reviewerBtn, approverBtn);
         Scene scene = new Scene(screen, 400, 400);
 

@@ -7,26 +7,51 @@ public class ApplicationForm {
     private String applicationId;
     private Immigrant immigrant;
     private List<Document> documents;
-    private Double processingFee;
-    private boolean isComplete;
+    private Double paymentAmount;
+    private String comments;
 
     public ApplicationForm(String applicationId, Immigrant immigrant, List<Document> documents, Double processingFee) {
         this.applicationId = applicationId;
         this.immigrant = immigrant;
-        this.documents = documents != null ? new ArrayList<>(documents) : new ArrayList<>();
-        this.processingFee = processingFee;
-        this.isComplete = false;
+        this.documents = documents != null ? documents : new ArrayList<>();
+        this.paymentAmount = paymentAmount;
     }
 
-    public String getApplicationId() { return applicationId; }
-    public Immigrant getImmigrant() { return immigrant; }
-    public List<Document> getDocuments() { return new ArrayList<>(documents); }
-    public Double getProcessingFee() { return processingFee; }
-    public boolean isComplete() { return isComplete; }
+    public Immigrant getImmigrant() {
+        return immigrant;
+    }
 
-    public void setComplete(boolean complete) { this.isComplete = complete; }
+    public void addDocument(Document doc) {
+        this.documents.add(doc);
+    }
 
-    public void addDocument(Document document) {
-        documents.add(document);
+    public String getFormId(){
+        return this.applicationID;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public boolean isComplete() {
+        return immigrant != null &&
+               immigrant.getFullName() != null &&
+               immigrant.getSsn() != null &&
+               immigrant.getAddress() != null &&
+               paymentAmount != null;
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicationForm{" +
+                "applicationID='" + applicationID + '\'' +
+                ", immigrant=" + immigrant +
+                ", documents=" + documents.size() +
+                ", paymentAmount=" + paymentAmount +
+                '}';
     }
 }

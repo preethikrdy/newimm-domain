@@ -5,9 +5,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class AppFormTest {
+
+    private Immigrant sampleImmigrant() {
+        Address address = new Address("123 Main St", "Fairfax", "VA", "22030");
+        return new Immigrant("Test User", "1990-01-01", "123-45-6789", "CountryX", "Pending", address);
+    }
 
     @Test
     public void testCreateValidApplicationForm() {
